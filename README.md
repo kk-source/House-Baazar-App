@@ -13,3 +13,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
+
+### See Live preview of the website
+
+Open [Link](https://github.com/kk-source/House-Baazar-App) to open app in your browser.
