@@ -16,4 +16,4 @@ You may also see any lint errors in the console.
 
 ### See Live preview of the website
 
-Open [Link](https://github.com/kk-source/House-Baazar-App) to open app in your browser.
+Open [Link](https://house-baazar-app.vercel.app/) to open app in your browser.
