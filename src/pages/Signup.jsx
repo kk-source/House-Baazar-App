@@ -60,7 +60,7 @@ function SignUp() {
 
         <form onSubmit={onSubmit}>
           <input
-            type="name"
+            type="text"
             className="nameInput"
             placeholder="Name"
             id="name"
