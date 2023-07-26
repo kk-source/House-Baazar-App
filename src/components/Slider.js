@@ -48,7 +48,7 @@ function Slider() {
       <>
         <p className="exploreHeading">Recommended</p>
 
-        <Swiper slidesPerView={1} navigation pagination={{ clickable: true }}>
+        <Swiper slidesPerView={1} navigation={true} loop={true} pagination={{ clickable: true }}>
           {listings.map(({ data, id }) => (
             <SwiperSlide
               key={id}
