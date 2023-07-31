@@ -19,7 +19,7 @@ function Category() {
   const [listings, setListings] = useState(null);
   const [loading, setLoading] = useState(true);
   const [lastFetchedListing, setLastFetchedListing] = useState(null);
-
+  const [searchText, setSearchText] = useState("");
   const params = useParams();
 
   useEffect(() => {
@@ -52,7 +52,6 @@ function Category() {
             data: doc.data(),
           });
         });
-
         setListings(listings);
         setLoading(false);
       } catch (error) {
@@ -102,9 +101,16 @@ function Category() {
   return (
     <div className="category">
       <header>
-        <p className="pageHeader">
-          Places for {params.categoryName}
-        </p>
+        <p className="pageHeader">Places for {params.categoryName}</p>
+        <input
+          type="text"
+          className="formInput searchInput"
+          placeholder="Search"
+          value={searchText}
+          onChange={(e) => {
+            setSearchText(() => e.target.value);
+          }}
+        />
       </header>
 
       {loading ? (
@@ -113,7 +119,12 @@ function Category() {
         <>
           <main>
             <ul className="categoryListings">
-              {listings.map((listing) => (
+              {listings
+                .filter(
+                  (listing) =>
+                    listing.data.location.toLowerCase().indexOf(searchText.toLowerCase()) >
+                    -1
+                ).map((listing) => (
                 <ListingItem
                   listing={listing.data}
                   id={listing.id}

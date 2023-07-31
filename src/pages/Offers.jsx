@@ -19,7 +19,7 @@ function Offers() {
   const [listings, setListings] = useState(null);
   const [loading, setLoading] = useState(true);
   const [lastFetchedListing, setLastFetchedListing] = useState(null);
-
+  const [searchText, setSearchText] = useState("");
   const params = useParams();
 
   useEffect(() => {
@@ -102,6 +102,15 @@ function Offers() {
     <div className="category">
       <header>
         <p className="pageHeader">Offers</p>
+        <input
+          type="text"
+          className="formInput searchInput"
+          placeholder="Search"
+          value={searchText}
+          onChange={(e) => {
+            setSearchText(() => e.target.value);
+          }}
+        />
       </header>
 
       {loading ? (
@@ -110,13 +119,20 @@ function Offers() {
         <>
           <main>
             <ul className="categoryListings">
-              {listings.map((listing) => (
-                <ListingItem
-                  listing={listing.data}
-                  id={listing.id}
-                  key={listing.id}
-                />
-              ))}
+              {listings
+                .filter(
+                  (listing) =>
+                    listing.data.location
+                      .toLowerCase()
+                      .indexOf(searchText.toLowerCase()) > -1
+                )
+                .map((listing) => (
+                  <ListingItem
+                    listing={listing.data}
+                    id={listing.id}
+                    key={listing.id}
+                  />
+                ))}
             </ul>
           </main>
           <br />
